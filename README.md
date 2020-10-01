@@ -15,45 +15,32 @@
 
 ```sh
 % aws configure --profile foobar
-
-# sls config を使ってもいい
-% sls config credentials --provider aws --key 1234 --secret 5678 --profile foobar
 ```
 
 ## Debug
 
-venv起動
+Activate pipenv shell.
 
 ```sh
 % pipenv shell
 ```
 
-Debug
+Debug.
 
 ```sh
-# Serverless Debug
-% sls invoke local -f notify_aws_billing \
-    --aws-profile foobar
+# On Terminal
+% sls invoke local -f notify_aws_billing --aws-profile foobar
 
 # Use Webhook-URL
-% sls invoke local -f notify_aws_billing \
-    --url='https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX' \
-    --aws-profile foobar
+% sls invoke local -f notify_aws_billing --aws-profile foobar
+    --url='https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX'
 ```
 
 ## Deploy
 
 ```sh
-# Usually
-% sls deploy \
-    --url="https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX" \
-    --aws-profile foobar
-
-# specific stage
-% sls deploy \
-    --stage foo \
-    --url="https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX" \
-    --aws-profile foobar
+% sls deploy --aws-profile foobar \
+    --url="https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
 ```
 
 ## License
