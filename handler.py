@@ -21,10 +21,10 @@ logger.propagate = False
 def notify_aws_billing(event, context) -> None:
     client = boto3.client('ce')
     (start_date, end_date) = get_date_range()
-    logger.debug("Period: %s - %s" % (start_date, end_date))
 
     msg = get_msg(get_total_cost(client, start_date, end_date),
-                  get_services_billing(client, start_date, end_date))
+                  get_services_billing(client, start_date, end_date),
+                  start_date, end_date)
 
     webhook_url = os.getenv('WEBHOOK_URL')
     if webhook_url != 'undefined':
@@ -67,13 +67,17 @@ def get_services_billing(client, start_date, end_date) -> dict:
     return resp['ResultsByTime'][0]['Groups']
 
 
-def get_msg(total_cost: float, groups: dict) -> dict:
-    summary = "Yesterday's cost was $%5.2f." % total_cost
+def get_msg(total_cost: float, groups: dict, start_date: datetime, end_date: datetime) -> dict:
+    end_date = end_date - datetime.timedelta(days=1)
+    date_range = "FROM %s TO %s." % (start_date.isoformat(), end_date.isoformat())
+
+    summary = "AWS COST $%5.2f.\n%s" % (total_cost, date_range)
     detail = '```'
     for group in groups:
         detail += "%s: $%5.2f\n" % (group['Keys'][0],
                                     float(group['Metrics']['UnblendedCost']['Amount']))
     detail += '```'
+
     attachments = {
         'color': 'warning',
         'fields': [
@@ -105,6 +109,6 @@ def get_date_range() -> (datetime, datetime):
     if today == firstday_of_month:
         lastday_of_lastmonth = firstday_of_month + datetime.timedelta(days=-1)
         firstday_of_lastmonth = lastday_of_lastmonth.replace(day=1)
-        return firstday_of_lastmonth, lastday_of_lastmonth
+        return firstday_of_lastmonth, today
 
     return firstday_of_month, today
