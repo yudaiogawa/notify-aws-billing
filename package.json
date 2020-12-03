@@ -1,0 +1,19 @@
+{
+  "name": "notify-aws-billing",
+  "version": "1.0.0",
+  "description": "Notify AWS Billing By AWS Lambda.",
+  "main": "handler.py",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yudaiogawa/notify-aws-billing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yudaiogawa/notify-aws-billing/issues"
+  },
+  "homepage": "https://github.com/yudaiogawa/notify-aws-billing#readme",
+  "dependencies": {
+    "serverless-python-requirements": "^5.1.0"
+  },
+  "author": "yudaiogawa",
+  "license": "MIT"
+}
