@@ -18,7 +18,7 @@ functions:
     handler: handler.notify_aws_billing
     timeout: 10
     events:
-      - schedule: cron(* 1 ? * MON-FRI *)
+      - schedule: cron(0 1 ? * MON-FRI *)
     environment:
       WEBHOOK_URL: ${opt:url}
 
