@@ -95,27 +95,33 @@ Define the following variables to `.env` .
 Deploys your entire service:
 
 ```sh
-# Deploy to development.
-% make deploy-dev
+% make deploy-dev # to development
 
-# Deploy to production.
-% make deploy-prd
+% make deploy-prd # to production.
 ```
 
 Deploys an function:
 
 ```sh
-# Deploy to development.
-% make deploy-func-dev
+% make deploy-func-dev # to development
 
-# Deploy to production.
-% make deploy-func-prd
+% make deploy-func-prd # to production
 ```
 
 Invokes deployed function:
 
 ```sh
-% make invoke
+% make invoke-dev # of development
+
+% make invoke-prd # of production
+```
+
+## Remove the deployed service
+
+```sh
+% make rm-dev # from development
+
+% make rm-prd # from production
 ```
 
 ## License
