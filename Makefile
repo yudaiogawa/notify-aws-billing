@@ -9,12 +9,14 @@ start: ## docker-compose start
 down: ## docker-compose down -v --rmi all
 	docker-compose down -v --rmi all
 
-invoke: ## Invokes deployed function.
-	sls invoke -f notify_aws_billing --logs
 invoke-local: ## Invokes a function locally.
 	sls invoke local -f notify_aws_billing --aws-profile $(AWS_PROFILE)
 invoke-local-notify: ## Invokes a function locally and notify Slack.
 	sls invoke local -f notify_aws_billing --aws-profile $(AWS_PROFILE) --url=$(WEBHOOK_URL)
+invoke-dev: ## Invokes deployed function in development.
+	sls invoke -f notify_aws_billing --logs
+invoke-prd: ## Invokes deployed function in production.
+	sls invoke -f notify_aws_billing --logs --stage prd
 
 deploy-dev: ## Deploys your entire service via CloudFormation to development.
 	sls deploy --aws-profile $(AWS_PROFILE) --url=$(WEBHOOK_URL)
@@ -26,8 +28,10 @@ deploy-func-dev: ## deploys an function to development.
 deploy-func-prd: ## deploys an function to production.
 	sls deploy function -f notify_aws_billing --aws-profile $(AWS_PROFILE) --url=$(WEBHOOK_URL) --stage=prd
 
-remove: ## Remove the deployed service from the provider.
+rm-dev: ## Remove the deployed service from the provider in development.
 	sls remove -v
+rm-prd: ## Remove the deployed service from the provider in production.
+	sls remove -v --stage prd
 
 .PHONY: help
 help:
