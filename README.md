@@ -73,7 +73,7 @@ Define the following variables to `.env` .
 
 ```sh
 % export AWS_PROFILE=foobar
-% export WEBHOOK_URL='https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX'
+% export WEBHOOK_URL='https://hooks.slack.com/services/T00/B00/XXX'
 ```
 
 2:
