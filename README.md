@@ -1,5 +1,7 @@
 # Notify AWS Billing
 
+<p align='center'><img src='img/arch.png' width='704px' /></p>
+
 ## Requirements
 
 * awscli
