@@ -1,6 +1,14 @@
 # Notify AWS Billing
 
+Serverless Application for notifies AWS billing to slack.
+
+<br>
+
+## Architecture Image
+
 <p align='center'><img src='img/arch.png' width='704px' /></p>
+
+<br>
 
 ## Requirements
 
@@ -14,6 +22,8 @@
 * serverless framework
 * slack webhook url
 
+<br>
+
 ## Required Settings
 
 #### AWS PROFILE
@@ -23,6 +33,8 @@ Requires the IAM user granted the `AdministratorAccess` or the IAM user granted 
 ```sh
 % aws configure --profile foobar
 ```
+
+<br>
 
 ## Getting Started - Use Docker
 
@@ -65,6 +77,8 @@ Define the following variables to `.env` .
 % make invoke-local
 ```
 
+<br>
+
 ## Getting Started - Use Host
 
 1. Export the environment variables
@@ -92,6 +106,8 @@ Define the following variables to `.env` .
 % make invoke-local
 ```
 
+<br>
+
 ## Deploy
 
 Deploys your entire service:
@@ -118,6 +134,8 @@ Invokes deployed function:
 % make invoke-prd # of production
 ```
 
+<br>
+
 ## Remove the deployed service
 
 ```sh
@@ -125,6 +143,8 @@ Invokes deployed function:
 
 % make rm-prd # from production
 ```
+
+<br>
 
 ## License
 
